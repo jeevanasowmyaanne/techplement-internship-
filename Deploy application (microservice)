@@ -1,0 +1,27 @@
+mysql instance 
+sudo yum update -y
+sudo yum install mysql-server -y
+sudo systemctl start mysqld
+sudo systemctl enable mysqld
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER 'wordpressuser'@'%' IDENTIFIED BY 'yourpassword';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'%';
+FLUSH PRIVILEGES;
+
+WordPress instances 
+sudo yum install httpd php php-mysql -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+wget https://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+sudo cp wordpress/* /var/www/html/
+sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+sudo nano /var/www/html/wp-config.php
+sudo nano /var/www/html/wp-
+
+sudo nano /var/
+define('DB_NAME', 'wordpress');
+define('DB_USER', 'wordpressuser');
+define('DB_PASSWORD', 'yourpassword');
+define('DB_HOST', 'mysql_instance_IP_or_hostname');
